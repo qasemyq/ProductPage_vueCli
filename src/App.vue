@@ -1,28 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <actual-page :premium="IsPremium"  @add-to-cart='hereaddToCart'></actual-page>
+      <div class="cart">
+         <p class="pcart">Cart ({{ cart.length }})</p>
+      </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ActualPage from './components/ActualPage.vue'  
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ActualPage,
+  },
+  data () {
+    return {
+      IsPremium: true,
+      cart: [],
+    }
+  },
+  methods: {
+    hereaddToCart(id) {
+      this.cart.push(id)
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.pcart {
+  position: absolute;
+  right: 15%;
+  top: 15%;
+  border: 0.5px solid black;
+  padding: 3px;
+  font-size: 20px;
 }
 </style>
